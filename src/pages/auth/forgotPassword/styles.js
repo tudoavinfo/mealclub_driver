@@ -5,29 +5,48 @@ export default StyleSheet.create({
     container:{
         backgroundColor: '#f7f0d6',
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         position: 'relative',
+    },
+    containerImg:{
+        paddingTop: 100,
     },
     logoimg:{
         height:150,
         position: 'relative',
-        marginTop: 25
     },
     containerEditPassword:{      
         flexDirection: 'row',
         alignItems:'center',
         justifyContent:'space-between',
-        marginTop: 100,
-        marginBottom: 5,
-        position: 'relative'
+        position: 'relative',
+        paddingTop: 10,
     },
     containerSubmitEdit:{
         flexDirection: 'row',
         alignItems:'center',
         justifyContent:'space-between',
         position: 'relative',
-        marginBottom: 25
+        paddingBottom: 80,
+    },
+
+    //childrens
+    txtInputEmail:{
+        marginBottom: -80,
+    },
+    featherIcon:{
+        marginBottom: -80,
+    },
+    txtNewPassword:{
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    txtTitle:{
+        textAlign: 'center',
+        fontSize:25,
+        color:'#e0201f',
+        paddingBottom: -100,
     },
     btnEditPassword:{
         backgroundColor: '#e0201f',
@@ -41,17 +60,5 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         width: '50%',
     },
-
-    //childrens
-    txtNewPassword:{
-        color: '#fff',
-        fontWeight: 'bold',
-    },
-    txtTitle:{
-        textAlign: 'center',
-        fontSize:25,
-        color:'#e0201f',
-        marginTop: 5,
-    }
       
 });
