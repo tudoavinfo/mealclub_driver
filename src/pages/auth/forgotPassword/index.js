@@ -11,7 +11,10 @@ export default function ForgotPassword(){
 
         <View style={styles.container}>
             
-            <Image source={logoImg} style={styles.logoimg} resizeMode="contain"></Image>    
+            <View style={styles.containerImg}>
+                <Image source={logoImg} style={styles.logoimg} resizeMode="contain"></Image>  
+            </View>
+              
             
             <View>
                 <Text style={styles.txtTitle}>Recuperação de senha</Text>
@@ -20,7 +23,7 @@ export default function ForgotPassword(){
             
             
             <View style={styles.containerEditPassword}>                            
-                <Icon size={25} name={"mail"} color="#e0201f"/>
+                <Icon style={styles.featherIcon} size={25} name={"mail"} color="#e0201f"/>
                     <TextInput style={styles.txtInputEmail} 
                     placeholderTextColor="#b8ac95" 
                     placeholder="Email/ Username"
