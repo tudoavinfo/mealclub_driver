@@ -1,43 +1,122 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/dist/Feather';
+import {Text, View, Image} from 'react-native';
+import { createAppContainer} from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
+import { Icon } from 'react-native-elements';
+import userimg from '../../assets/mealclub_logo.png';
 
-import styles from './styles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import Profile from '../profile' ;
+import Transporte from '../transporte';
+import Personal from '../personal';
+import Delivery from '../delivery';
+import Earnings from '../earnings';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default function Dashboard(){
-    return(
-        <View style={styles.container}>
-            <View style={styles.mapContainer}>
-                <Text style={[{color: '#FFB700', fontWeight: 'bold'}]}>Map</Text>
 
-                <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.btnStart}>
-                        <Text style={[{color: '#fff', fontWeight: 'bold'}]}>Start Now</Text>
-                    </TouchableOpacity>
-                </View>
 
-                <View style={styles.functionsContainer}> 
-                    <View style={styles.iconsContainer}>
-                        <Icon style={[{paddingLeft: 15}]} size={25} name={"dollar-sign"} color="#1C1C1C"/>                    
-                        <Icon size={25} name={"calendar"} color="#1C1C1C"/>                     
-                        <Icon size={25} name={"user"} color="#1C1C1C"/>                       
-                        <Icon size={25} name={"bell"} color="#1C1C1C"/>                    
-                        <Icon style={[{paddingRight: 15}]} size={25} name={"trending-up"} color="#1C1C1C"/>          
-                    </View>
-                    
-                    <View style={styles.txtIconsContainer}>
-                        <Text style={[{paddingLeft: 15}]}>ex</Text>    
-                        <Text>ex</Text>
-                        <Text>ex</Text>
-                        <Text>ex</Text>
-                        <Text style={[{paddingRight: 15}]}>ex</Text>
-                    </View>                             
-                        
-                </View>              
-                
-            </View>
-           
+const CustomDrawerComponent = (props) => (    
+    <View style={{flex:1}}>  
+        <View style={{ justifyContent:'center', alignItems:'center', padding:10}}>
+            <Image source={userimg} resizeMode={'contain'} style={{width:100, height:100}}/>
+            <Text>
+                Olá, First Name
+            </Text>
         </View>
+
+        <View style={{flexDirection:'row', justifyContent:'center', }}>
+            <Text style={{flex:1 }}>
+                Sair
+            </Text>
+        </View>
+        <View style={{padding:10, marginTop:15, marginBottom:10 }}>
+            <Text>
+                Link de Indicação:
+            </Text>
+            <Text>
+                https://www.mealclub.com.br/sponsorid/teste
+            </Text>
+        </View>
+        <DrawerItems {...props} />    
+    </View>
+)
+
+    const ProfileStackNavigator = createStackNavigator(
+        {
+            Perfil : { screen: Profile, navigationOptions:{ header: null } },
+            PersonalInfo : { screen: Personal, navigationOptions:{ header: null } },
+            TransportInfo : { screen: Transporte, navigationOptions:{ header: null } },
+             
+        },{
+
+        }
     );
-}
+
+    const AppDrawerNavigator = createDrawerNavigator(
+        {
+            Home : {screen: ProfileStackNavigator, navigationOptions:{ drawerIcon: <Icon name='account-circle' size={28}/>}},
+        },
+        {
+        initialRouteName: 'Home',
+        contentComponent: CustomDrawerComponent,
+        contentOptions:{
+            activeTintColor: '#0b66b2',
+            activeBackgroundColor: '#E6F4FF',
+            labelStyle:{
+            fontSize: 19,
+            },
+            itemsContainerStyle:{
+            marginVertical: 0,
+            marginHorizontal: 0,
+            },
+            iconContainerStyle:{
+            opacity: 0.7,
+            }
+        }
+        }
+    )
+
+    const AppTabNavigator = createBottomTabNavigator({
+        Profile: { screen:AppDrawerNavigator},
+        Delivery: {screen: Delivery},
+        Earnings: {screen:Earnings},
+    }, 
+    {  
+        initialRouteName: 'Profile',
+        animationEnabled: true,
+        lazy:false,
+        tabBarPosition: 'bottom',
+        defaultNavigationOptions: ({ navigation }) => (
+            {
+                tabBarIcon: ({tintColor }) => {
+                    const { routeName } = navigation.state;
+                    let IconComponent = Icon;
+                    let iconName;
+                    if (routeName === 'Profile') {
+                        iconName =  'account-circle';
+                    }else if(routeName === 'Delivery'){
+                        iconName = 'local-taxi';
+                    }else if(routeName === 'Earnings'){
+                        iconName = 'poll';
+                    }
+                    
+                    return <IconComponent name={iconName}  color={tintColor} />;
+                },tabBarOptions : {
+                    activeTintColor: '#e02140',
+                    inactiveTintColor: '#a0a0a0',
+                    keyboardHidesTabBar: true,
+                    adaptive: true,
+                    style:{
+                        backgroundColor:'#f8f9e7',
+                        borderTopColor:'#e02140',
+                        borderTopWidth:0.7,
+                    },
+                    
+                }
+            }
+        ) 
+    })
+
+
+
+export default createAppContainer(AppTabNavigator);

@@ -3,10 +3,14 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
 
     mapContainer:{
+        ...StyleSheet.absoluteFillObject,
         flex:1,
         backgroundColor: '#f1f1f1',
         justifyContent:'space-around',
         position:'relative',      
+    },
+    map: {
+        ...StyleSheet.absoluteFillObject,
     },
     btnContainer:{
         backgroundColor: 'transparent',

@@ -3,10 +3,10 @@ import {View, Text} from 'react-native';
 
 import styles from './styles';
 
-export default function SignUp(){
+export const Phone = () => {
     return(
         <View style={styles.container}>
-            <Text>Sign Up Screen</Text>
+            <Text>Valida Phone</Text>
         </View>
     );
 }
