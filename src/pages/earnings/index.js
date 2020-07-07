@@ -46,12 +46,12 @@ export default function Earnings(){
                                 <View style={styles.defaultViewModal}>
                                     <Text style={styles.personalNameModal}>Último mês</Text>
                                     <Text style={styles.txtModal}>12</Text>
-                                </View>
-                                <View style={styles.defaultViewModal}>
+                                </View>                      
+                            </ScrollView> 
+                              <View style={styles.defaultViewModal}>
                                     <Text style={[styles.personalNameModal,{fontWeight:'bold'}]}>Total</Text>
                                     <Text style={styles.txtModal}>26</Text>
-                                </View>
-                            </ScrollView> 
+                              </View>
                             <TouchableOpacity style={styles.btnModal}>
                                 <Text style={styles.personalNameBtn} onPress={() => setModalOpen2(false)}>Ver Minha Rede</Text>
                                 <Icon name={'arrow-right'} type={'feather'} size={30} color='#fff' onPress={() => setModalOpen2(false)}/>
