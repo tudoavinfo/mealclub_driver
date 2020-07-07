@@ -50,7 +50,7 @@ export default function Earnings(){
                             </ScrollView> 
                               <View style={styles.defaultViewModal}>
                                     <Text style={[styles.personalNameModal,{fontWeight:'bold'}]}>Total</Text>
-                                    <Text style={styles.txtModal}>26</Text>
+                                    <Text style={[styles.txtModal, {color:'green'}]}>26</Text>
                               </View>
                             <TouchableOpacity style={styles.btnModal}>
                                 <Text style={styles.personalNameBtn} onPress={() => setModalOpen2(false)}>Ver Minha Rede</Text>
@@ -130,7 +130,7 @@ export default function Earnings(){
                         </ScrollView>   
                         <View style={styles.defaultViewModal}>
                             <Text style={[styles.personalNameModal,{fontWeight:'bold'}]}>Total</Text>
-                            <Text style={styles.txtModal}>26</Text>
+                            <Text style={[styles.txtModal, {color:'green'}]}>26</Text>
                         </View>
 
                         
